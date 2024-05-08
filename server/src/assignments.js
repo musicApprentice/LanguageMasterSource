@@ -181,18 +181,22 @@ async function deleteAssignment(className, assignmentName) {
         await client.connect();
         const db = client.db(className);
         const col = db.collection("assignments");
+        const col1 = db.collection("metrics");
         if ((await col.find({ assignment: assignmentName }).toArray()).length > 0) {
             await col.deleteMany({ assignment: assignmentName });
+            await col1.deleteMany({assignment : assignmentName});
             console.log("The assignment has been deleted");
         } else {
             throw("Assignment does not exist");
         }
+
     } catch (err) {
         console.log(err);
     } finally {
         await client.close();
     }
 }
+
 
 // Quoc
 async function deleteFromAssignment(className,assignmentName,flashcard_Object){
