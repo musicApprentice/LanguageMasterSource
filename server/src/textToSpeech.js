@@ -34,6 +34,7 @@ const languageConfigs = {
     'Polish': { languageCode: 'pl-PL', sampleRate: 16000, encoding: 'LINEAR16' },
     'Portuguese (Brazil)': { languageCode: 'pt-BR', sampleRate: 16000, encoding: 'LINEAR16' },
     'Portuguese (Portugal)': { languageCode: 'pt-PT', sampleRate: 16000, encoding: 'LINEAR16' },
+    'Romanian': { languageCode: 'ro-RO', sampleRate: 16000, encoding: 'LINEAR16' },
     'Russian': { languageCode: 'ru-RU', sampleRate: 16000, encoding: 'LINEAR16' },
     'Spanish (Spain)': { languageCode: 'es-ES', sampleRate: 16000, encoding: 'LINEAR16' },
     'Spanish (Mexico)': { languageCode: 'es-MX', sampleRate: 16000, encoding: 'LINEAR16' },
