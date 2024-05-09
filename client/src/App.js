@@ -30,43 +30,42 @@ const App = () => {
     // const [isLoggedIn, setIsLoggedIn] = useState(true);
 
     //Production
-    const [isTeacher, setIsTeacher] = useState(() => {
-        const saved = window.localStorage.getItem("isTeacher");
-        return saved ? saved === "true" : false;
-    });
-    const [isLoggedIn, setIsLoggedIn] = useState(() => {
-        const saved = window.localStorage.getItem("isLoggedIn");
-        return saved ? saved === "true" : false;
-    });
-    const [userEmail, setUserEmail] = useState(() => {
-        const saved = window.localStorage.getItem("userEmail");
-        return saved ? saved : "";
-    });
+    // const [isTeacher, setIsTeacher] = useState(() => {
+    //     const saved = window.localStorage.getItem("isTeacher");
+    //     return saved ? saved === "true" : false;
+    // });
+    // const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    //     const saved = window.localStorage.getItem("isLoggedIn");
+    //     return saved ? saved === "true" : false;
+    // });
+    // const [userEmail, setUserEmail] = useState(() => {
+    //     const saved = window.localStorage.getItem("userEmail");
+    //     return saved ? saved : "";
+    // });
 
-    useEffect(() => {
-        window.localStorage.setItem("isTeacher", isTeacher ? "true" : "false");
-    }, [isTeacher]);
-
-    useEffect(() => {
-        window.localStorage.setItem("isLoggedIn", isLoggedIn ? "true" : "false");
-    }, [isLoggedIn]);
-
-    useEffect(() => {
-        window.localStorage.setItem("userEmail", userEmail);
-    }, [userEmail]);
-
-    //Removed this in favor of below
     // useEffect(() => {
-    //     getClassesForUser(userEmail);  // Fetch classes for the hardcoded user
-    //   }, []);  // Empty dependency array to run only on mount
+    //     window.localStorage.setItem("isTeacher", isTeacher ? "true" : "false");
+    // }, [isTeacher]);
+
+    // useEffect(() => {
+    //     window.localStorage.setItem("isLoggedIn", isLoggedIn ? "true" : "false");
+    // }, [isLoggedIn]);
+
+    // useEffect(() => {
+    //     window.localStorage.setItem("userEmail", userEmail);
+    // }, [userEmail]);
 
     useEffect(() => {
-        console.log("is Teacher", isTeacher);
-        if (isLoggedIn && userEmail && (isTeacher === false || isTeacher === true)) {
-            getClassesForUser(userEmail);
-            console.log("getClasses called with teacher:", isTeacher);
-        }
-    }, [userEmail, isTeacher, isLoggedIn]);  
+        getClassesForUser(userEmail);  // Fetch classes for the hardcoded user
+      }, []);  // Empty dependency array to run only on mount
+
+    // useEffect(() => {
+    //     console.log("is Teacher", isTeacher);
+    //     if (isLoggedIn && userEmail && (isTeacher === false || isTeacher === true)) {
+    //         getClassesForUser(userEmail);
+    //         console.log("getClasses called with teacher:", isTeacher);
+    //     }
+    // }, [userEmail, isTeacher, isLoggedIn]);  
  
     const [classList, setClassList] = useState([]);
     const [currentClass, setCurrentClass] = useState(""); 
@@ -79,6 +78,9 @@ const App = () => {
     const [attemptScore, setAttemptScore] = useState("");
     const [transcription, setTranscription] = useState("");
     const [language, setLanguage] = useState("")
+    const [isLoggedIn, setIsLoggedIn] = useState(false);  // Set to true for development
+    const [userEmail, setUserEmail] = useState("");  // Hardcoded email
+    const [isTeacher, setIsTeacher] = useState(false);
     //TODO: Use these globals for the flashcard IO
    
     const [showFlashcardView, setShowFlashcardView] = useState(false);
@@ -170,7 +172,7 @@ const App = () => {
         setIsLoggedIn(true);
         setUserEmail(email);
         //This is now called by the useEffect on line 61
-        //getClassesForUser(email);
+        getClassesForUser(email);
         setIsTeacher(role);
     };
 
